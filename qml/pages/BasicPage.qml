@@ -104,6 +104,7 @@ Item {
             id: titleRow
             anchors.left: parent.left
             anchors.right: parent.right
+            anchors.rightMargin: 40
             spacing: 0
             anchors.verticalCenter: parent.verticalCenter
             Separator {
@@ -202,6 +203,31 @@ Item {
         if (!isLocked) page.previousPage()
     }
 
+    MouseArea
+    {
+        z: 2
+        width: 40 * ApplicationInfo.ratio + 40*ApplicationInfo.ratio
+        anchors.right: blueRect.right
+        anchors.top : blueRect.top
+        anchors.bottom: blueRect.bottom
+
+        Image {
+            id: closeButton
+            z: 2
+            source: ApplicationInfo.getImagePath("darkclose.png")
+            width: 40 * ApplicationInfo.ratio
+            height: 40 * ApplicationInfo.ratio
+            anchors.right: parent.right
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.rightMargin: 20 * ApplicationInfo.ratio
+        }
+        onClicked:
+        {
+            Qt.callLater(Qt.quit)
+        }
+    }
+
+
     TouchTextField {
         id: searchField
         z: 2
@@ -213,7 +239,7 @@ Item {
                    parent.width - t1.implicitWidth - ApplicationInfo.ratio * 50 :
                    parent.width/2.5
         anchors.leftMargin: blueRect.width/2
-        anchors.rightMargin: 20 * ApplicationInfo.ratio
+        anchors.rightMargin: 40 * ApplicationInfo.ratio + closeButton.width
         anchors.margins: 12 * ApplicationInfo.ratio
 
         placeholderText: qsTr("Find City")
@@ -223,6 +249,8 @@ Item {
         onClearButtonClicked: page.clearSearchBox()
         Accessible.searchEdit: true
     }
+
+
 
     Loader {
         sourceComponent: pageComponent

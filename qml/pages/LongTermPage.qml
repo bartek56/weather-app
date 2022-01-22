@@ -53,7 +53,8 @@ BasicPage {
 
     property string sourceLink: ApplicationInfo.currentCityModel.sourceXml.replace(/\/forecast.xml$/, "")
 
-    onCityLoadedChanged: updateStatusBar(ApplicationInfo.currentCityModel.copyright + " <a href=" + sourceLink + "\>(source)")
+    // hide status bas
+//    onCityLoadedChanged: updateStatusBar(ApplicationInfo.currentCityModel.copyright + " <a href=" + sourceLink + "\>(source)")
 
     pageComponent: Item {
         TouchScrollView {
